@@ -105,7 +105,7 @@ export const Contact = () => {
               type="video/mp4"
               autoPlay
               muted
-              src={'assets/contact-video.mp4'}
+              src={'assets/contact-video1.mp4'}
             />
           </div>
           <div className={style.contact__video2}>
