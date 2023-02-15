@@ -1,0 +1,142 @@
+@import './Home.module.scss';
+
+.reviews {
+  background: #0b0b14;
+  padding: 80px 0;
+
+  @media (max-width: 768px){
+    padding: 40px 0;
+  }
+
+  .title {
+    margin-bottom: 70px;
+    color: #fff;
+
+    @media (max-width: 768px){
+      margin-bottom: 40px;
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+  &__slide {
+    padding: 40px;
+
+    @media (max-width: 768px) {
+      padding: 40px 20px;
+    }
+  }
+}
+.slide {
+  &__hed {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+}
+.content {
+  display: flex;
+  justify-content: space-between;
+  div {
+    margin-left: 40px;
+
+    @media (max-width: 768px){
+      margin-left: 20px;
+    }
+    @media (max-width: 375px){
+      margin-left: 10px;
+    }
+    p {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 26px;
+      line-height: 20px;
+      margin-bottom: 12px;
+
+      color: #ffffff;
+
+      @media (max-width: 768px){
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+      @media (max-width: 420px){
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+
+      &:last-child {
+        font-size: 20px;
+
+        @media (max-width: 768px){
+          font-size: 18px;
+        }
+        @media (max-width: 420px){
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+.description {
+  max-width: 520px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #ffffff;
+  margin-bottom: 25px;
+
+  @media (max-width: 768px){
+    font-size: 14px;
+    line-height: 20px;
+  }
+  @media (max-width: 375px){
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+.rate{
+  @media (max-width: 768px){
+    max-width: 100px;
+  }
+  @media (max-width: 375px){
+    max-width: 60px;
+  }
+}
+.avatar{
+  @media (max-width: 768px){
+    width: 60px;
+    height: 60px;
+  }
+  @media (max-width: 375px){
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.google {
+  display: flex;
+  align-items: center;
+
+  img {
+    margin-right: 13px;
+  }
+  span {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    text-decoration-line: underline;
+    color: #ffffff;
+    @media (max-width: 768px){
+      font-size: 14px;
+    }
+  }
+}
+
+.button {
+  margin: 0 auto;
+}
