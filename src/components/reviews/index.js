@@ -1,11 +1,13 @@
 import React from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from "swiper";
 
 import { Button } from '..';
 
 import style from '@/styles/Reviews.module.scss';
 import 'swiper/css';
+import "swiper/css/navigation";
 
 import avatar from '@/assets/avatar.png';
 import google from '@/assets/logo-google.svg';
@@ -72,14 +74,20 @@ export const Reviews = () => {
           Happy students and what they had to say <br /> about us....
         </h2>
         <div className="reviews__swiper">
-          <Swiper slidesPerView="auto" centeredSlides={true} loop={true} className="mySwiper">
+          <Swiper
+            navigation={true}
+            modules={[Navigation]}
+            slidesPerView="auto"
+            centeredSlides={true}
+            loop={true}
+            className="mySwiper">
             {SwiperList.map((item) => (
               <SwiperSlide key={item.id}>
                 <div className={style.reviews__slide}>
                   <div className={style.slide__hed}>
                     <div className={style.content}>
                       <Image className={style.avatar} src={item.avatar} alt="avatar" />
-                      <div> 
+                      <div>
                         <p>{item.name}</p>
                         <p>{item.subName}</p>
                       </div>
