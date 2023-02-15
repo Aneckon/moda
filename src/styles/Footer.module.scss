@@ -44,6 +44,10 @@
 
     a {
       svg {
+        @media (max-width: 468px){
+          width: 18px;
+          height: 18px; 
+        }
         path {
           transition: 0.3s;
         }

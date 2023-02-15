@@ -98,23 +98,33 @@ export const Contact = () => {
           </div>
 
           <div className={style.contact__video}>
-            <video preload="true" autoPlay muted>
-              <source src={'assets/contact-video.mov'} type="video/mp4" />
-            </video>
+            <video
+              loop
+              playsInline
+              preload="true"
+              type="video/mp4"
+              autoPlay
+              muted
+              src={'assets/contact-video.mp4'}
+            />
           </div>
           <div className={style.contact__video2}>
-            <video preload="true" autoPlay muted>
-              <source src={'assets/contact-video2.mov'} type="video/mp4" />
-            </video>
+            <video
+              loop
+              playsInline
+              preload="true"
+              type="video/mp4"
+              autoPlay
+              muted
+              src={'assets/contact-video2.mov'}
+            />
           </div>
 
           <Image className={style.image2} src={ContactImage2} alt="image" />
         </div>
       </div>
       {inView && (
-        <div
-          id="contact__panel"
-          className={style.contact__info}>
+        <div id="contact__panel" className={style.contact__info}>
           <p>Contact us:</p>
           <Link href="tel:447404783116" className={style.contact__tel}>
             <svg

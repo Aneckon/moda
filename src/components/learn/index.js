@@ -26,7 +26,6 @@ export const Learn = () => {
               src="assets/video.mp4"
               preload="true"
               loop
-              autoPlay
               controls 
               playsInline
             />

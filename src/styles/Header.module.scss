@@ -3,7 +3,8 @@
 .header {
   background: #0b0b14;
   position: relative;
-  z-index: 1;
+  z-index: 1111;
+  
 
   &::after {
     content: '';
@@ -36,8 +37,16 @@
   }
 
   &__top {
+    width: 100%;
+    position: fixed;
     padding: 14px 0;
     border-bottom: 1px solid #ffffff;
+    background: #0b0b14;
+    z-index: 1111;
+
+    @media (max-width: 565px){
+      padding: 11px 0;
+    }
   }
   &__content {
     align-items: center;
@@ -67,6 +76,7 @@
 }
 
 .wrapper {
+  padding-top: 70px;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;

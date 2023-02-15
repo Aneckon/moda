@@ -10,6 +10,8 @@ import Minus from '@/assets/minus.svg';
 import CoursImgBg from '@/assets/cours__img.png';
 import CoursImgBg1 from '@/assets/cours__img2.png';
 import CoursImgBg2 from '@/assets/cours__img3.png';
+import CoursImgBg3 from '@/assets/cours__img4.png';
+import CoursImgBg4 from '@/assets/cours__img5.png';
 
 const AccordionList = [
   {
@@ -246,8 +248,19 @@ export const CourseDetails = () => {
         </div>
       </div>
       <div className={style.images}>
-        <Image className={style.imagebg} src={CoursImgBg} alt="img" />
-        <Image className={style.imagebg2} src={CoursImgBg1} alt="img" />
+        <div className={style.images__gallery}>
+          <div className={style.images__coloumn}>
+            <Image src={CoursImgBg} alt="img" />
+            <Image src={CoursImgBg3} alt="img" />
+          </div>
+          <div className={style.images__coloumn}>
+            <Image src={CoursImgBg1} alt="img" />
+            <Image src={CoursImgBg4} alt="img" />
+          </div>
+          <div className={style.images__coloumn}>
+            <Image src={CoursImgBg2} alt="img" />
+          </div>
+        </div>
         <Image className={style.imagebg3} src={CoursImgBg2} alt="img" />
       </div>
     </div>

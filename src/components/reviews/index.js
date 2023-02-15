@@ -1,12 +1,13 @@
 import React from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from "swiper";
+import { Navigation, Pagination } from "swiper";
 
 import { Button } from '..';
 
 import style from '@/styles/Reviews.module.scss';
 import 'swiper/css';
+import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import avatar from '@/assets/avatar.png';
@@ -76,9 +77,10 @@ export const Reviews = () => {
         <div className="reviews__swiper">
           <Swiper
             navigation={true}
-            modules={[Navigation]}
+            modules={[Navigation, Pagination]}
             slidesPerView="auto"
             centeredSlides={true}
+            pagination={true}
             loop={true}
             className="mySwiper">
             {SwiperList.map((item) => (

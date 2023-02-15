@@ -133,6 +133,7 @@
 
       @media (max-width: 768px) {
         font-size: 24px;
+        text-align: left;
       }
     }
     a {
@@ -184,8 +185,8 @@
     height: 150px;
   }
   @media (max-width: 425px) {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
   }
 }
 
@@ -230,9 +231,9 @@
     height: 150px;
   }
   @media (max-width: 425px) {
-    top: 275px;
-    width: 100px;
-    height: 100px;
+    top: 255px;
+    width: 120px;
+    height: 120px;
   }
 }
 
