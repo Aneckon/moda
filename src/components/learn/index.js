@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import style from '@/styles/Learn.module.scss';
 
-import LearnImage from '@/assets/video__bg.png';
+import Play from '@/assets/play.svg';
 
 export const Learn = () => {
   const [video, setVideo] = React.useState(false);
@@ -22,13 +22,14 @@ export const Learn = () => {
             amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut
             labore et dolore magnam aliquam quaerat voluptatem.
           </p>
-          {video ? (
-            <video src={'assets/video.mp4'} preload="true" autoPlay />
-          ) : (
-            <div onClick={() => setVideo(true)} className={style.image}>
-              <Image src={LearnImage} alt="image" />
-            </div>
-          )}
+            <video
+              src="assets/video.mp4"
+              preload="true"
+              loop
+              autoPlay
+              controls 
+              playsInline
+            />
         </div>
       </div>
     </div>
