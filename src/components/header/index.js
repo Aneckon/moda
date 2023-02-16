@@ -13,6 +13,7 @@ import headerStyle1 from '@/assets/header__style-1.png';
 import headerStyle2 from '@/assets/header__style-2.png';
 import headerStyle3 from '@/assets/header__style-3.png';
 import headerDecor from '@/assets/header__bg-decor.svg';
+import headerDecorMobile from '@/assets/header-decor-mobile.svg';
 import headerTitle from '@/assets/title.svg';
 import headerSubtitle from '@/assets/subtitle.svg';
 
@@ -119,6 +120,7 @@ export const Header = () => {
         </div>
       </div>
       <Image className={style.header__decor} src={headerDecor} alt="bg" />
+      <Image className={style.header__decorMobile} src={headerDecorMobile} alt="bg" />
     </div>
   );
 };
