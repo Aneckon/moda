@@ -250,11 +250,12 @@ export const CourseDetails = () => {
       <div className={style.images}>
         <div className={style.images__gallery}>
           <div className={style.images__coloumn}>
-            <Image src={CoursImgBg1} alt="img" />
+            <Image src={CoursImgBg} alt="img" />
             <Image src={CoursImgBg3} alt="img" />
           </div>
           <div className={style.images__coloumn}>
-            <Image src={CoursImgBg} alt="img" />
+            {' '}
+            <Image src={CoursImgBg1} alt="img" />
             <Image src={CoursImgBg4} alt="img" />
           </div>
           <div className={style.images__coloumn}>
