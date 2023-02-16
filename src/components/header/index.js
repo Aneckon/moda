@@ -9,10 +9,12 @@ import style from '@/styles/Header.module.scss';
 import HeaderLogoSvg from '@/assets/modda-donna-logo.svg';
 import HeaderLogoPng from '@/assets/modda-donna-logo.png';
 import HeaderBg from '@/assets/header__bg.png';
-import headerStyle1 from '@/assets/header__style-1.png'
-import headerStyle2 from '@/assets/header__style-2.png'
-import headerStyle3 from '@/assets/header__style-3.png'
-import headerDecor from '@/assets/header__bg-decor.svg'
+import headerStyle1 from '@/assets/header__style-1.png';
+import headerStyle2 from '@/assets/header__style-2.png';
+import headerStyle3 from '@/assets/header__style-3.png';
+import headerDecor from '@/assets/header__bg-decor.svg';
+import headerTitle from '@/assets/title.svg';
+import headerSubtitle from '@/assets/subtitle.svg';
 
 const HeaderNavigate = [
   {
@@ -86,21 +88,21 @@ export const Header = () => {
         <div className={style.wrapper}>
           <div className={style.content}>
             <div className={style.title}>
-              <h1>TOP3 techniques</h1>
-              <p>in permanent makeup</p>
+              <Image src={headerTitle} alt="title" />
+              <Image className={style.subtitle} src={headerSubtitle} alt="subtitle" />
               <p>for Beginners</p>
             </div>
             <div className={style.style}>
               <div className={style.style__item}>
-                <Image src={headerStyle1} alt='style' />
+                <Image src={headerStyle1} alt="style" />
                 <p>Soft eyelıner</p>
               </div>
               <div className={style.style__item}>
-                <Image src={headerStyle2} alt='style' />
+                <Image src={headerStyle2} alt="style" />
                 <p>Powder Brows</p>
               </div>
               <div className={style.style__item}>
-                <Image src={headerStyle3} alt='style' />
+                <Image src={headerStyle3} alt="style" />
                 <p>VELOUR LIPS</p>
               </div>
             </div>
