@@ -1,10 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import emailjs from '@emailjs/browser';
+
+import { ToastContainer, toast } from 'react-toastify';
 
 import { Button } from '..';
 
 import style from '@/styles/Header.module.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 import HeaderLogoSvg from '@/assets/modda-donna-logo.svg';
 import HeaderLogoPng from '@/assets/modda-donna-logo.png';
@@ -41,8 +45,66 @@ const HeaderNavigate = [
 ];
 
 export const Header = () => {
+  const form = React.useRef();
+  const [email, setEmail] = React.useState('');
+  const [phone, setPhone] = React.useState('');
+  const [emailError, setEmailError] = React.useState(false);
+  const [phoneError, setPhoneError] = React.useState(false);
+
+  const handleClickScroll = () => {
+    const element = document.getElementById('header');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    if (phone.length && email.length && phone.indexOf(' ') && email.indexOf(' ')) {
+      emailjs
+        .sendForm('service_w5q6pcs', 'template_33672ca', form.current, 'lZ6yuyMdIphWYyCqE')
+        .then(
+          (result) => {
+            setEmail('');
+            setPhone('');
+            toast.success('Email sent successfully', {
+              position: 'top-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'dark',
+            });
+            setPhoneError(false);
+            setEmailError(false);
+          },
+          (error) => {
+            toast.error('Email sent no successfully', {
+              position: 'top-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'dark',
+            });
+          },
+        );
+    }
+    if (phone.length === 0) {
+      setPhoneError(true);
+    }
+    if (email.length === 0) {
+      setEmailError(true);
+    }
+  };
+
   return (
-    <div className={style.header}>
+    <div id="header" className={style.header}>
       <div className={style.header__top}>
         <div className="container">
           <div className={style.header__content}>
@@ -59,7 +121,7 @@ export const Header = () => {
                 ))}
               </ul>
             </div>
-            <Button className={style.button}>
+            <Button click={handleClickScroll} className={style.button}>
               APPLY NOW
               <svg
                 width="22"
@@ -107,11 +169,27 @@ export const Header = () => {
                 <p>VELOUR LIPS</p>
               </div>
             </div>
-            <form className={style.form}>
+            <form ref={form} onSubmit={sendEmail} className={style.form}>
               <p className={style.form__name}>Contact us</p>
               <div className={style.form__content}>
-                <input type="text" placeholder="Name" />
-                <input type="text" placeholder="Phone number" />
+                <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  type="name"
+                  placeholder="Name"
+                  name="name"
+                  className={emailError ? style.input__error : ''}
+                />
+                <input
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  type="tel"
+                  placeholder="Phone number"
+                  name="phone"
+                  pattern="[0-9]{12}"
+                  maxLength="12"
+                  className={phoneError ? style.input__error : ''}
+                />
                 <Button className={style.form__button}>SEND</Button>
               </div>
             </form>
@@ -121,6 +199,18 @@ export const Header = () => {
       </div>
       <Image className={style.header__decor} src={headerDecor} alt="bg" />
       <Image className={style.header__decorMobile} src={headerDecorMobile} alt="bg" />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 };

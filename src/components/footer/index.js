@@ -10,6 +10,13 @@ import HeaderLogoSvg from '@/assets/modda-donna-logo.svg';
 import HeaderLogoPng from '@/assets/modda-donna-logo.png';
 
 export const Footer = () => {
+  const handleClickScroll = () => {
+    const element = document.getElementById('header');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className={style.footer}>
       <div className="container">
@@ -69,7 +76,7 @@ export const Footer = () => {
             </div>
           </div>
           <div className={style.footer__button}>
-            <Button className={style.button}>
+            <Button click={handleClickScroll} className={style.button}>
               APPLY NOW
               <svg
                 width="22"

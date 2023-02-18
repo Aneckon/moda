@@ -195,6 +195,13 @@ export const CourseDetails = () => {
     setAccordionIsActive(!accordionIsActive);
   };
 
+  const handleClickScroll = () => {
+    const element = document.getElementById('header');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className={style.courseDetails}>
       <div className="container">
@@ -222,7 +229,7 @@ export const CourseDetails = () => {
               )}
             </div>
           ))}
-          <Button className={style.button}>
+          <Button click={handleClickScroll} className={style.button}>
             APPLY NOW
             <svg
               width="22"
@@ -254,7 +261,6 @@ export const CourseDetails = () => {
             <Image src={CoursImgBg3} alt="img" />
           </div>
           <div className={style.images__coloumn}>
-            {' '}
             <Image src={CoursImgBg1} alt="img" />
             <Image src={CoursImgBg4} alt="img" />
           </div>

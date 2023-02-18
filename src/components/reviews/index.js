@@ -1,14 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from "swiper";
+import { Navigation, Pagination } from 'swiper';
 
 import { Button } from '..';
 
 import style from '@/styles/Reviews.module.scss';
 import 'swiper/css';
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 import avatar from '@/assets/avatar.png';
 import google from '@/assets/logo-google.svg';
@@ -68,6 +68,13 @@ const SwiperList = [
 ];
 
 export const Reviews = () => {
+  const handleClickScroll = () => {
+    const element = document.getElementById('header');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className={style.reviews}>
       <div className="container">
@@ -105,7 +112,7 @@ export const Reviews = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-          <Button className={style.button}>
+          <Button click={handleClickScroll} className={style.button}>
             APPLY NOW
             <svg
               width="22"
