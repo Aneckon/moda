@@ -1,6 +1,8 @@
 @import './Home.module.scss';
 
 .footer {
+  position: relative;
+  z-index: 111;
   padding: 45px 0;
   background: #010202;
 
