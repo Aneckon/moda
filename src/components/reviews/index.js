@@ -76,7 +76,7 @@ export const Reviews = () => {
   };
 
   return (
-    <div className={style.reviews}>
+    <div id="feedbacs" className={style.reviews}>
       <div className="container">
         <h2 className={style.title}>
           Happy students and what they had to say <br /> about us....

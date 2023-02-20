@@ -80,7 +80,7 @@ const WhyUsList = [
 
 export const WhyUs = () => {
   return (
-    <div className={style.whyUs}>
+    <div id='whyus' className={style.whyUs}>
       <div className="container">
         <h2 className={style.title}>Why to choose us?</h2>
         <div className={style.whyUs__content}>

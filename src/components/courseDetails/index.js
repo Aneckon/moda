@@ -203,7 +203,7 @@ export const CourseDetails = () => {
   };
 
   return (
-    <div className={style.courseDetails}>
+    <div id="course" className={style.courseDetails}>
       <div className="container">
         <div className={style.courseDetails__content}>
           <h2 className={style.title}>Course details</h2>

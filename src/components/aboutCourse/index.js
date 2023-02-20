@@ -4,7 +4,7 @@ import style from '@/styles/AboutCourse.module.scss';
 
 export const AboutCourse = () => {
   return (
-    <div className={style.aboutCourse}>
+    <div id='aboute' className={style.aboutCourse}>
       <div className="container">
         <div className={style.aboutCourse__content}>
           <div className={style.info}>

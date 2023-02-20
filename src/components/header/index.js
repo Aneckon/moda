@@ -25,22 +25,22 @@ const HeaderNavigate = [
   {
     id: 1,
     name: 'About course',
-    link: '#',
+    link: 'aboute',
   },
   {
     id: 2,
     name: 'WHY US',
-    link: '#',
+    link: 'whyus',
   },
   {
     id: 3,
     name: 'COURSE DETAILS',
-    link: '#',
+    link: 'course',
   },
   {
     id: 4,
     name: 'FEEDBACKS',
-    link: '#',
+    link: 'feedbacs',
   },
 ];
 
@@ -53,6 +53,13 @@ export const Header = () => {
 
   const handleClickScroll = () => {
     const element = document.getElementById('header');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleScrollId = (link) => {
+    const element = document.getElementById(link);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -116,7 +123,7 @@ export const Header = () => {
               <ul>
                 {HeaderNavigate.map((item) => (
                   <li key={item.id}>
-                    <Link href={item.link}>{item.name}</Link>
+                    <p onClick={() => handleScrollId(item.link)}>{item.name}</p>
                   </li>
                 ))}
               </ul>
