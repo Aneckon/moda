@@ -22,13 +22,7 @@ export const Learn = () => {
             amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut
             labore et dolore magnam aliquam quaerat voluptatem.
           </p>
-            <video
-              src="assets/video.mp4"
-              preload="true"
-              loop
-              controls 
-              playsInline
-            />
+          <iframe src="https://www.youtube.com/embed/12Q_y8ij8aI"></iframe>
         </div>
       </div>
     </div>
