@@ -168,11 +168,11 @@ export const Header = () => {
                 <p>Soft eyelıner</p>
               </div>
               <div className={style.style__item}>
-                <Image src={headerStyle2} alt="style" />
+                <Image src={headerStyle3} alt="style" />
                 <p>Powder Brows</p>
               </div>
               <div className={style.style__item}>
-                <Image src={headerStyle3} alt="style" />
+                <Image src={headerStyle2} alt="style" />
                 <p>VELOUR LIPS</p>
               </div>
             </div>

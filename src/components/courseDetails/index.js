@@ -54,31 +54,35 @@ const AccordionList = [
     content: [
       {
         id: 1,
-        name: 'How to make right sketch for brows, lips and eyes;',
+        name: 'Fast Track course;',
       },
       {
         id: 2,
-        name: 'How to fix the shape to not loose shape during the work.;',
+        name: 'Work for yourself at home or mobile;',
       },
       {
         id: 3,
-        name: 'How to use right anestopic cream;',
+        name: 'Work in a beauty salon;',
       },
       {
         id: 4,
-        name: 'How to work without pain;',
+        name: 'Get paid very well (For example, for one procedure length of 2- 3 hours you can get aprx. £300);',
       },
       {
         id: 5,
-        name: 'How to achieve the best healed result;',
+        name: 'Becoming an Instructor;',
       },
       {
         id: 6,
-        name: 'You will learn Powder Brows, Velour Lips, and Soft Eyeliner;',
+        name: 'Take place in Permanent Make Up Conferences;',
       },
       {
         id: 7,
-        name: 'How to take a beautiful picture of your work.',
+        name: 'Become a speaker;',
+      },
+      {
+        id: 8,
+        name: 'Create your own school of Permanent Make Up.',
       },
     ],
   },
@@ -88,31 +92,45 @@ const AccordionList = [
     content: [
       {
         id: 1,
-        name: 'How to make right sketch for brows, lips and eyes;',
+        title: 'Deposit',
+        content: [
+          {
+            id: 1,
+            name: 'Deposit (£);',
+          },
+          {
+            id: 2,
+            name: 'Balance (£), payable on course date;',
+          },
+        ],
       },
       {
         id: 2,
-        name: 'How to fix the shape to not loose shape during the work.;',
+        title: 'Card',
+        content: [
+          {
+            id: 1,
+            name: 'Place a deposit;',
+          },
+          {
+            id: 2,
+            name: 'Pay balance 7 Days before Course Start;',
+          },
+        ],
       },
       {
         id: 3,
-        name: 'How to use right anestopic cream;',
-      },
-      {
-        id: 4,
-        name: 'How to work without pain;',
-      },
-      {
-        id: 5,
-        name: 'How to achieve the best healed result;',
-      },
-      {
-        id: 6,
-        name: 'You will learn Powder Brows, Velour Lips, and Soft Eyeliner;',
-      },
-      {
-        id: 7,
-        name: 'How to take a beautiful picture of your work.',
+        title: 'Cash',
+        content: [
+          {
+            id: 1,
+            name: 'Place a deposit;',
+          },
+          {
+            id: 2,
+            name: 'Pay balance on the day of the course.',
+          },
+        ],
       },
     ],
   },
@@ -122,31 +140,7 @@ const AccordionList = [
     content: [
       {
         id: 1,
-        name: 'How to make right sketch for brows, lips and eyes;',
-      },
-      {
-        id: 2,
-        name: 'How to fix the shape to not loose shape during the work.;',
-      },
-      {
-        id: 3,
-        name: 'How to use right anestopic cream;',
-      },
-      {
-        id: 4,
-        name: 'How to work without pain;',
-      },
-      {
-        id: 5,
-        name: 'How to achieve the best healed result;',
-      },
-      {
-        id: 6,
-        name: 'You will learn Powder Brows, Velour Lips, and Soft Eyeliner;',
-      },
-      {
-        id: 7,
-        name: 'How to take a beautiful picture of your work.',
+        name: 'Only a good level of spoken and written English is required',
       },
     ],
   },
@@ -156,31 +150,11 @@ const AccordionList = [
     content: [
       {
         id: 1,
-        name: 'How to make right sketch for brows, lips and eyes;',
+        name: 'You will finish course with international recognized ABT diploma, which will allow you to take an insurance to work with Permanent Make Up at home or salon.',
       },
       {
         id: 2,
-        name: 'How to fix the shape to not loose shape during the work.;',
-      },
-      {
-        id: 3,
-        name: 'How to use right anestopic cream;',
-      },
-      {
-        id: 4,
-        name: 'How to work without pain;',
-      },
-      {
-        id: 5,
-        name: 'How to achieve the best healed result;',
-      },
-      {
-        id: 6,
-        name: 'You will learn Powder Brows, Velour Lips, and Soft Eyeliner;',
-      },
-      {
-        id: 7,
-        name: 'How to take a beautiful picture of your work.',
+        name: 'Upgrade to VTCT available within academy',
       },
     ],
   },
@@ -219,10 +193,56 @@ export const CourseDetails = () => {
               {accordionIsActive && accordionTitle === item.title ? (
                 <div className={style.content}>
                   {item.content.map((content) => (
-                    <div key={content.id} className={style.name}>
-                      {content.name}
+                    <div
+                      key={content.id}
+                      className={
+                        item.title === 'Payment options' ? style.name__options : style.name
+                      }>
+                      {item.title === 'Payment options' ? (
+                        <>
+                          <p>{content.title}</p>
+                          {content.content.map((item) => (
+                            <p key={item.id} className={style.payment__name}>
+                              {item.name}
+                            </p>
+                          ))}
+                        </>
+                      ) : (
+                        content.name
+                      )}
                     </div>
                   ))}
+                  {item.title === 'Payment options' && (
+                    <>
+                      <div className={style.options}>
+                        <h3>Pay with Klarna</h3>
+                        <p>Pay Now</p>
+                        <p>
+                          Simply pay for your new kicks in a few clicks. Klarna remembers all of
+                          your info so you don’t have to. Easy peasy.
+                        </p>
+                      </div>
+                      <div className={style.options}>
+                        <p>Pay later</p>
+                        <p>
+                          Simply hit ‘Pay Later’ when you checkout and don’t worry, there’s no pesky
+                          passwords to remember. Simply try them on, look good – no sweat – Klarna
+                          will email you reminding you to pay up 30 days after shipping. <br />
+                          <br /> Not making your payment on time could affect your ability to use
+                          Klarna in the future. Debt collection agencies are used as a last resort.
+                          You must be 18+ and a UK resident to be eligible for this credit offer.
+                        </p>
+                      </div>
+                      <div className={style.options}>
+                        <p>Pay in 3</p>
+                        <p>
+                          All you have to do is select ‘Pay in 3’ at the checkout and the first
+                          instalment will be taken when your order is confirmed. No interest, no
+                          hassle. Easy, right?
+                        </p>
+                      </div>
+                    </>
+                  )}
                 </div>
               ) : (
                 ''
