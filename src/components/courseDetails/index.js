@@ -9,7 +9,7 @@ import Plus from '@/assets/plus.svg';
 import Minus from '@/assets/minus.svg';
 import CoursImgBg from '@/assets/cours__img.png';
 import CoursImgBg1 from '@/assets/cours__img2.png';
-import CoursImgBg2 from '@/assets/cours__img3.png';
+import CoursImgBg2 from '@/assets/cours__img3.jpg';
 import CoursImgBg3 from '@/assets/cours__img4.png';
 import CoursImgBg4 from '@/assets/cours__img5.png';
 
