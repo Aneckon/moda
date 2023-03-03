@@ -191,9 +191,9 @@ export const Header = () => {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   type="tel"
-                  placeholder="Phone number"
+                  placeholder="Phone number +44"
                   name="phone"
-                  pattern="[0-9]{12}"
+                  pattern="+[0-9]{12}"
                   maxLength="12"
                   className={phoneError ? style.input__error : ''}
                 />
