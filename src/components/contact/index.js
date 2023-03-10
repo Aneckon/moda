@@ -140,7 +140,7 @@ export const Contact = () => {
             </svg>
             <span>+447404783116</span>
           </Link>
-          <Link href="mailto:academy@modadonnabeauty.com" className={style.contact__email}>
+          <Link href="mailto:cs@modadonnabeauty.com" className={style.contact__email}>
             <svg
               width="24"
               height="24"
@@ -160,7 +160,7 @@ export const Contact = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            <span>academy@modadonnabeauty.com</span>
+            <span>cs@modadonnabeauty.com</span>
           </Link>
         </div>
       )}
