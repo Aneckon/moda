@@ -46,9 +46,9 @@ const HeaderNavigate = [
 
 export const Header = () => {
   const form = React.useRef();
-  const [email, setEmail] = React.useState('');
+  const [name, setName] = React.useState('');
   const [phone, setPhone] = React.useState('');
-  const [emailError, setEmailError] = React.useState(false);
+  const [nameError, setNameError] = React.useState(false);
   const [phoneError, setPhoneError] = React.useState(false);
 
   const handleClickScroll = () => {
@@ -65,15 +65,15 @@ export const Header = () => {
     }
   };
 
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
 
-    if (phone.length && email.length && phone.indexOf(' ') && email.indexOf(' ')) {
+    if (phone.length && name.length && phone.indexOf(' ') && name.indexOf(' ')) {
       emailjs
         .sendForm('service_w5q6pcs', 'template_33672ca', form.current, 'lZ6yuyMdIphWYyCqE')
         .then(
           (result) => {
-            setEmail('');
+            setName('');
             setPhone('');
             toast.success('Email sent successfully', {
               position: 'top-right',
@@ -86,7 +86,7 @@ export const Header = () => {
               theme: 'dark',
             });
             setPhoneError(false);
-            setEmailError(false);
+            setNameError(false);
           },
           (error) => {
             toast.error('Email sent no successfully', {
@@ -101,12 +101,25 @@ export const Header = () => {
             });
           },
         );
+      const rawResponse = await fetch(
+        'https://pmu.modadonnabeauty.com/api/create_pipedrive_lead/',
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name: name, phone: phone }),
+        },
+      );
+      const data = await rawResponse.json();
+      console.log(data);
     }
     if (phone.length === 0) {
       setPhoneError(true);
     }
-    if (email.length === 0) {
-      setEmailError(true);
+    if (name.length === 0) {
+      setNameError(true);
     }
   };
 
@@ -180,12 +193,12 @@ export const Header = () => {
               <p className={style.form__name}>Contact us</p>
               <div className={style.form__content}>
                 <input
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   type="name"
                   placeholder="Name"
                   name="name"
-                  className={emailError ? style.input__error : ''}
+                  className={nameError ? style.input__error : ''}
                 />
                 <input
                   value={phone}
