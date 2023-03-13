@@ -204,10 +204,10 @@ export const Header = () => {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   type="tel"
-                  placeholder="Phone number +44"
+                  placeholder="Phone number +44 7400 000000"
                   name="phone"
-                  pattern="+[0-9]{12}"
-                  maxLength="12"
+                  pattern="+[0-9]{13}"
+                  maxLength="13"
                   className={phoneError ? style.input__error : ''}
                 />
                 <Button className={style.form__button}>SEND</Button>
