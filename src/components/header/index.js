@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import emailjs from '@emailjs/browser';
+import InputMask from 'react-input-mask';
 
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -200,14 +201,13 @@ export const Header = () => {
                   name="name"
                   className={nameError ? style.input__error : ''}
                 />
-                <input
+                <InputMask 
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   type="tel"
                   placeholder="Phone number +44 7400 000000"
                   name="phone"
-                  pattern="+[0-9]{13}"
-                  maxLength="13"
+                  mask="+49 9999 999999"
                   className={phoneError ? style.input__error : ''}
                 />
                 <Button className={style.form__button}>SEND</Button>
