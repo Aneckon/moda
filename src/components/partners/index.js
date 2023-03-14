@@ -4,7 +4,7 @@ import Image from 'next/image';
 import style from '@/styles/Partners.module.scss';
 
 import logoVtct from '@/assets/partners/vtct.png';
-import logoAbt from '@/assets/partners/abt.png';
+import logoAbt from '@/assets/partners/abt.jpg';
 import logoCpd from '@/assets/partners/cpd.png';
 
 export const Partners = () => {
