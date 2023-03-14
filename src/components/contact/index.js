@@ -49,7 +49,7 @@ export const Contact = () => {
 
           <div className={style.followUs}>
             <p>Follow us:</p>
-            <Link href="#">
+            <Link target='_blank' href="https://www.instagram.com/modadonnabeautyacademy/">
               <svg
                 width="26"
                 height="26"
@@ -66,7 +66,7 @@ export const Contact = () => {
                 />
               </svg>
             </Link>
-            <Link href="#">
+            <Link target='_blank' href="https://www.facebook.com/modadonnaacademy/">
               <svg
                 width="26"
                 height="26"
@@ -82,7 +82,7 @@ export const Contact = () => {
               </svg>
             </Link>
 
-            <Link href="#">
+            <Link target='_blank' href="https://twitter.com/beautyacademymd?lang=en">
               <svg
                 width="26"
                 height="26"
