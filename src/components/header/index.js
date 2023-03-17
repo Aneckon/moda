@@ -110,7 +110,7 @@ export const Header = () => {
             Accept: 'application/json',
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ name: name, phone: phone }),
+          body: JSON.stringify({ name: name, phone: phone, label: 'moda-donna' }),
         },
       );
       const data = await rawResponse.json();
