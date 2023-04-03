@@ -4,6 +4,8 @@ import Link from 'next/link';
 import emailjs from '@emailjs/browser';
 import InputMask from 'react-input-mask';
 
+import { useSearchParams } from 'next/navigation';
+
 import { ToastContainer, toast } from 'react-toastify';
 
 import { Button } from '..';
@@ -51,6 +53,8 @@ export const Header = () => {
   const [phone, setPhone] = React.useState('');
   const [nameError, setNameError] = React.useState(false);
   const [phoneError, setPhoneError] = React.useState(false);
+
+  const searchParams = useSearchParams();
 
   const handleClickScroll = () => {
     const element = document.getElementById('header');
@@ -110,7 +114,15 @@ export const Header = () => {
             Accept: 'application/json',
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ name: name, phone: phone, label: 'landing PMU 3 TOP' }),
+          body: JSON.stringify({
+            name: name,
+            phone: phone,
+            labels: [
+              'landing PMU 3 TOP',
+              searchParams.get('fbclid') === 'fbclid' && 'facebook',
+              searchParams.get('gclid') === 'gclid' && 'google',
+            ],
+          }),
         },
       );
       const data = await rawResponse.json();
@@ -201,7 +213,7 @@ export const Header = () => {
                   name="name"
                   className={nameError ? style.input__error : ''}
                 />
-                <InputMask 
+                <InputMask
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   type="tel"
