@@ -142,7 +142,7 @@ export const Header = () => {
       return setSendLabes(['landing PMU 3 TOP', 'Google']);
     }
     return setSendLabes(['landing PMU 3 TOP']);
-  }, []);
+  }, [searchParams]);
 
   return (
     <div id="header" className={style.header}>
