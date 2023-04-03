@@ -54,6 +54,8 @@ export const Header = () => {
   const [nameError, setNameError] = React.useState(false);
   const [phoneError, setPhoneError] = React.useState(false);
 
+  const [sendLabes, setSendLabes] = React.useState([]);
+
   const searchParams = useSearchParams();
 
   const handleClickScroll = () => {
@@ -117,11 +119,7 @@ export const Header = () => {
           body: JSON.stringify({
             name: name,
             phone: phone,
-            labels: [
-              'landing PMU 3 TOP',
-              searchParams.get('fbclid') === 'fbclid' && 'facebook',
-              searchParams.get('gclid') === 'gclid' && 'google',
-            ],
+            labels: sendLabes,
           }),
         },
       );
@@ -135,6 +133,16 @@ export const Header = () => {
       setNameError(true);
     }
   };
+
+  React.useEffect(() => {
+    if (searchParams.get('fbclid')) {
+      return setSendLabes(['landing PMU 3 TOP', 'Facebook']);
+    }
+    if (searchParams.get('gclid')?.length) {
+      return setSendLabes(['landing PMU 3 TOP', 'Google']);
+    }
+    return setSendLabes(['landing PMU 3 TOP']);
+  }, []);
 
   return (
     <div id="header" className={style.header}>
