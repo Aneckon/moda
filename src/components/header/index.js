@@ -135,7 +135,7 @@ export const Header = () => {
   };
 
   React.useEffect(() => {
-    if (searchParams.get('fbclid')) {
+    if (searchParams.get('fbclid')?.length) {
       return setSendLabes(['landing PMU 3 TOP', 'Facebook']);
     }
     if (searchParams.get('gclid')?.length) {
