@@ -120,6 +120,11 @@ export const Header = () => {
             name: name,
             phone: phone,
             labels: sendLabes,
+            utm_source: searchParams.get('utm_source')?.length ? searchParams.get('utm_source') : '',
+            utm_medium: searchParams.get('utm_medium')?.length ? searchParams.get('utm_medium') : '',
+            utm_campaign: searchParams.get('utm_campaign')?.length ? searchParams.get('utm_campaign') : '',
+            utm_content: searchParams.get('utm_content')?.length ? searchParams.get('utm_content') : '',
+            utm_term: searchParams.get('utm_term')?.length ? searchParams.get('utm_term') : '',
           }),
         },
       );
