@@ -1,24 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
-import Script from 'next/script';
+import getPageComponents, { getFooter, getHeader } from '../components/req';
+import BlockManager from '@/components/BlockManager';
 
 import styles from '@/styles/Home.module.scss';
 
 import {
-  AboutCourse,
-  Contact,
-  CourseDetails,
   Footer,
   Header,
-  Learn,
-  Partners,
-  Reviews,
-  Stats,
-  WhyUs,
 } from '@/components';
 
 export default function Home() {
-  const headerRef = React.useRef(null);
+  const [content, setContent] = useState({})
+  const [header, setHeader] = useState({})
+  const [footer, setFooter] = useState({})
+
+  useEffect(() => {
+    getHeader()
+      .then(({ data }) => setHeader(data.data));
+
+    getFooter()
+      .then(({ data }) => setFooter(data.data));
+
+    getPageComponents()
+      .then(({ data }) => setContent(data.data));
+  }, [])
+
+  const headContent = content?.attributes?.Content.find(item => item.__component === 'modadonna-pmu-sections.head-section')
 
   return (
     <>
@@ -40,20 +48,13 @@ export default function Home() {
         {/* <!-- End Google Tag Manager --> */}
       </Head>
 
-      <Header />
+      <Header header={header?.attributes} headContent={headContent} />
 
       <main className={styles.main}>
-        <Stats />
-        <AboutCourse />
-        <CourseDetails />
-        <Learn />
-        <WhyUs />
-        <Partners />
-        <Reviews />
-        <Contact />
+        <BlockManager blocks={content?.attributes?.Content} />
       </main>
 
-      <Footer />
+      <Footer footer={footer?.attributes} />
 
       {/* <!-- Google Tag Manager (noscript) --> */}
       <noscript>

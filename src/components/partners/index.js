@@ -1,21 +1,17 @@
 import React from 'react';
-import Image from 'next/image';
-
 import style from '@/styles/Partners.module.scss';
 
-import logoVtct from '@/assets/partners/vtct.png';
-import logoAbt from '@/assets/partners/abt.jpg';
-import logoCpd from '@/assets/partners/cpd.png';
+const host = process.env.host
 
-export const Partners = () => {
+export const Partners = ({ title, partners }) => {
   return (
     <div className={style.partners}>
       <div className="container">
-        <h2 className={style.title}>Our partners</h2>
+        <h2 className={style.title}>{title}</h2>
         <div className={style.partners__content}>
-          <Image src={logoVtct} alt="logo" />
-          <Image src={logoAbt} alt="logo" />
-          <Image src={logoCpd} alt="logo" />
+          {partners?.data.map(item => (
+            <img key={item.id} src={`${host}${item?.attributes?.url}`} alt={item?.attributes?.alternativeText} />
+          ))}
         </div>
       </div>
     </div>

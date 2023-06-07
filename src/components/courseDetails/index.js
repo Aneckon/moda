@@ -7,160 +7,65 @@ import style from '@/styles/CourseDetails.module.scss';
 
 import Plus from '@/assets/plus.svg';
 import Minus from '@/assets/minus.svg';
-import CoursImgBg from '@/assets/cours__img.png';
-import CoursImgBg1 from '@/assets/cours__img2.png';
-import CoursImgBg2 from '@/assets/cours__img3.jpg';
-import CoursImgBg3 from '@/assets/cours__img4.png';
-import CoursImgBg4 from '@/assets/cours__img5.png';
 
-const AccordionList = [
+const host = process.env.host
+
+const paymentDrop = [
   {
     id: 1,
-    title: 'What you will learn',
+    title: 'Deposit',
     content: [
       {
         id: 1,
-        name: 'How to make right sketch for brows, lips and eyes;',
+        name: 'Deposit (£);',
       },
       {
         id: 2,
-        name: 'How to fix the shape to not loose shape during the work.;',
-      },
-      {
-        id: 3,
-        name: 'How to use right anestopic cream;',
-      },
-      {
-        id: 4,
-        name: 'How to work without pain;',
-      },
-      {
-        id: 5,
-        name: 'How to achieve the best healed result;',
-      },
-      {
-        id: 6,
-        name: 'You will learn Powder Brows, Velour Lips, and Soft Eyeliner;',
-      },
-      {
-        id: 7,
-        name: 'How to take a beautiful picture of your work.',
+        name: 'Balance (£), payable on course date;',
       },
     ],
   },
   {
     id: 2,
-    title: 'Career opportunities',
+    title: 'Card',
     content: [
       {
         id: 1,
-        name: 'Fast Track course;',
+        name: 'Place a deposit;',
       },
       {
         id: 2,
-        name: 'Work for yourself at home or mobile;',
-      },
-      {
-        id: 3,
-        name: 'Work in a beauty salon;',
-      },
-      {
-        id: 4,
-        name: 'Get paid very well (For example, for one procedure length of 2- 3 hours you can get aprx. £300);',
-      },
-      {
-        id: 5,
-        name: 'Becoming an Instructor;',
-      },
-      {
-        id: 6,
-        name: 'Take place in Permanent Make Up Conferences;',
-      },
-      {
-        id: 7,
-        name: 'Become a speaker;',
-      },
-      {
-        id: 8,
-        name: 'Create your own school of Permanent Make Up.',
+        name: 'Pay balance 7 Days before Course Start;',
       },
     ],
   },
   {
     id: 3,
-    title: 'Payment options',
+    title: 'Cash',
     content: [
       {
         id: 1,
-        title: 'Deposit',
-        content: [
-          {
-            id: 1,
-            name: 'Deposit (£);',
-          },
-          {
-            id: 2,
-            name: 'Balance (£), payable on course date;',
-          },
-        ],
+        name: 'Place a deposit;',
       },
       {
         id: 2,
-        title: 'Card',
-        content: [
-          {
-            id: 1,
-            name: 'Place a deposit;',
-          },
-          {
-            id: 2,
-            name: 'Pay balance 7 Days before Course Start;',
-          },
-        ],
-      },
-      {
-        id: 3,
-        title: 'Cash',
-        content: [
-          {
-            id: 1,
-            name: 'Place a deposit;',
-          },
-          {
-            id: 2,
-            name: 'Pay balance on the day of the course.',
-          },
-        ],
+        name: 'Pay balance on the day of the course.',
       },
     ],
   },
-  {
-    id: 4,
-    title: 'Requirements',
-    content: [
-      {
-        id: 1,
-        name: 'Only a good level of spoken and written English is required',
-      },
-    ],
-  },
-  {
-    id: 5,
-    title: 'Qualification',
-    content: [
-      {
-        id: 1,
-        name: 'You will finish course with international recognized ABT diploma, which will allow you to take an insurance to work with Permanent Make Up at home or salon.',
-      },
-      {
-        id: 2,
-        name: 'Upgrade to VTCT available within academy',
-      },
-    ],
-  },
-];
+]
 
-export const CourseDetails = () => {
+const CourseDetails = ({ title, collage_photos, image, dropdown, button }) => {
+  const newDropdown = dropdown.map(item => {
+    if (item.dropdown_title === 'Payment options') {
+      return {
+        ...item,
+        dropdown_list: paymentDrop
+      }
+    }
+
+    return item
+  })
   const [accordionIsActive, setAccordionIsActive] = React.useState(false);
   const [accordionTitle, setAccordionTitle] = React.useState('');
 
@@ -180,27 +85,27 @@ export const CourseDetails = () => {
     <div id="course" className={style.courseDetails}>
       <div className="container">
         <div className={style.courseDetails__content}>
-          <h2 className={style.title}>Course details</h2>
-          {AccordionList.map((item) => (
-            <div key={item.id} className={style.accordion}>
-              <div onClick={() => handleActive(item.title)} className={style.accordion__title}>
-                <p>{item.title}</p>
+          <h2 className={style.title}>{title}</h2>
+          {newDropdown.map((item) => (
+            <div key={item?.id} className={style.accordion}>
+              <div onClick={() => handleActive(item?.dropdown_title)} className={style.accordion__title}>
+                <p>{item?.dropdown_title}</p>
                 <Image
-                  src={accordionIsActive && accordionTitle === item.title ? Minus : Plus}
+                  src={accordionIsActive && accordionTitle === item?.dropdown_title ? Minus : Plus}
                   alt="icon"
                 />
               </div>
-              {accordionIsActive && accordionTitle === item.title ? (
+              {accordionIsActive && accordionTitle === item?.dropdown_title ? (
                 <div className={style.content}>
-                  {item.content.map((content) => (
+                  {item?.dropdown_list.map((content) => (
                     <div
-                      key={content.id}
+                      key={content?.id}
                       className={
-                        item.title === 'Payment options' ? style.name__options : style.name
+                        item?.dropdown_title === 'Payment options' ? style.name__options : style.name
                       }>
-                      {item.title === 'Payment options' ? (
+                      {item?.dropdown_title === 'Payment options' ? (
                         <>
-                          <p>{content.title}</p>
+                          <p>{content?.title}</p>
                           {content.content.map((item) => (
                             <p key={item.id} className={style.payment__name}>
                               {item.name}
@@ -208,11 +113,11 @@ export const CourseDetails = () => {
                           ))}
                         </>
                       ) : (
-                        content.name
+                        content?.title
                       )}
                     </div>
                   ))}
-                  {item.title === 'Payment options' && (
+                  {item?.dropdown_title === 'Payment options' && (
                     <>
                       <div className={style.options}>
                         <h3>Pay with Klarna</h3>
@@ -250,7 +155,7 @@ export const CourseDetails = () => {
             </div>
           ))}
           <Button click={handleClickScroll} className={style.button}>
-            APPLY NOW
+            {button?.title}
             <svg
               width="22"
               height="22"
@@ -277,19 +182,21 @@ export const CourseDetails = () => {
       <div className={style.images}>
         <div className={style.images__gallery}>
           <div className={style.images__coloumn}>
-            <Image src={CoursImgBg} alt="img" />
-            <Image src={CoursImgBg3} alt="img" />
+            <img src={`${host}${collage_photos?.data[0]?.attributes?.url}`} alt={collage_photos?.data[0]?.attributes?.url} />
+            <img src={`${host}${collage_photos?.data[2]?.attributes?.url}`} alt={collage_photos?.data[2]?.attributes?.url} />
           </div>
           <div className={style.images__coloumn}>
-            <Image src={CoursImgBg1} alt="img" />
-            <Image src={CoursImgBg4} alt="img" />
+            <img src={`${host}${collage_photos?.data[1]?.attributes?.url}`} alt={collage_photos?.data[1]?.attributes?.url} />
+            <img src={`${host}${collage_photos?.data[3]?.attributes?.url}`} alt={collage_photos?.data[3]?.attributes?.url} />
           </div>
           <div className={style.images__coloumn}>
-            <Image src={CoursImgBg2} alt="img" />
+            <img src={`${host}${image?.data?.attributes?.url}`} alt={image?.data?.attributes?.alternativeText} />
           </div>
         </div>
-        <Image className={style.imagebg3} src={CoursImgBg2} alt="img" />
+        <img className={style.imagebg3} src={`${host}${image?.data?.attributes?.url}`} alt={image?.data?.attributes?.alternativeText} />
       </div>
     </div>
   );
 };
+
+export default CourseDetails
