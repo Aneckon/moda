@@ -2,6 +2,9 @@ import React from 'react';
 import Image from 'next/image';
 import emailjs from '@emailjs/browser';
 import InputMask from 'react-input-mask';
+import Select from 'react-select'
+import cx from 'classnames'
+import countryPrefixes from '../consts/countryPrefixes'
 
 import { useSearchParams } from 'next/navigation';
 
@@ -13,14 +16,8 @@ import style from '@/styles/Header.module.scss';
 import 'react-toastify/dist/ReactToastify.css';
 
 import HeaderLogoPng from '@/assets/modda-donna-logo.png';
-import HeaderBg from '@/assets/header__bg.png';
-import headerStyle1 from '@/assets/header__style-1.png';
-import headerStyle2 from '@/assets/header__style-2.png';
-import headerStyle3 from '@/assets/header__style-3.png';
 import headerDecor from '@/assets/header__bg-decor.svg';
 import headerDecorMobile from '@/assets/header-decor-mobile.svg';
-import headerTitle from '@/assets/title.svg';
-import headerSubtitle from '@/assets/subtitle.svg';
 
 const host = process.env.host
 
@@ -30,6 +27,88 @@ export const Header = ({ header, headContent }) => {
   const [phone, setPhone] = React.useState('');
   const [nameError, setNameError] = React.useState(false);
   const [phoneError, setPhoneError] = React.useState(false);
+  const [selectedPrefix, setSelectedPrefix] = React.useState({ value: '+44', label:'UK (+44)', length: 10 })
+  const [maskNumber, setMaskNumber] = React.useState('9999 999999')
+
+  const controlStyles = {
+    width: 100,
+    height: 48,
+    borderRadius: 50,
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0,
+    border: `1px solid ${phoneError ? 'red' : '#252525'}`,
+    borderRight: 'transparent',
+    fontSize: 14,
+    backgroundColor: 'transparent',
+
+    '@media (max-width: 768px)': {
+      width: 50,
+      height: 40,
+      fontSize: 12,
+    },
+
+    '&:hover': {
+      borderColor: '#252525',
+    }
+  }
+
+  const placeholderStyles = {
+    fontStyle: 'normal',
+    fontSize: 14,
+    color: '#afaeae',
+    '@media (max-width: 768px)': {
+      fontSize: 12,
+      padding: 0,
+      margin: 0
+    }
+  }
+
+  const dropdownIndicator = {
+    color: '#252525',
+    '@media (max-width: 768px)': {
+      display: 'none'
+    }
+  }
+
+  const valueContainer = {
+    '@media (max-width: 768px)': {
+      paddingRight: 2,
+    }
+  }
+
+  const menuStyles = {
+    width: 300,
+    '@media (max-width: 768px)': {
+      width: 200,
+    }
+  }
+
+  const indicatorContainerStyles = {
+    '@media (max-width: 768px)': {
+      padding: 2,
+    }
+  }
+
+  const formatOptionLabel = (option, { context }) => context === 'value' ? `${option.value}` : option.label;
+
+  const colourStyles = {
+    control: (styles) => ({ ...styles, ...controlStyles }),
+    placeholder: (styles) => ({ ...styles, ...placeholderStyles }),
+    input: (styles) => ({ ...styles, height: 30 }),
+    menu: (styles) => ({ ...styles, ...menuStyles }),
+    dropdownIndicator: (styles) => ({ ...styles, ...dropdownIndicator }),
+    indicatorsContainer: (styles) => ({ ...styles, ...indicatorContainerStyles }),
+    valueContainer: (styles) => ({ ...styles, ...valueContainer }),
+    indicatorSeparator: (styles) => ({ ...styles, backgroundColor: '#252525' }),
+    singleValue: (styles) => ({ ...styles, color: 'white' })
+  };
+
+  const handlePrefixSelect = (prefixValues) => {
+    setSelectedPrefix(prefixValues)
+    setPhone('')
+    const maskString = '9'.repeat(4) + ' ' + '9'.repeat(prefixValues.mobileNumberLength - 4)
+    setMaskNumber(maskString)
+  }
 
   const [sendLabes, setSendLabes] = React.useState([]);
 
@@ -52,7 +131,16 @@ export const Header = ({ header, headContent }) => {
   const sendEmail = async (e) => {
     e.preventDefault();
 
-    if (phone.length && name.length && phone.indexOf(' ') && name.indexOf(' ')) {
+    if (phone.includes('_') || phone.replace(' ', '').length !== selectedPrefix.mobileNumberLength) {
+      setPhoneError(true);
+      return
+    }
+    if (name.length === 0) {
+      setNameError(true);
+      return
+    }
+
+    if (!phoneError && !nameError && phone.indexOf(' ') && name.indexOf(' ')) {
       emailjs
         .sendForm('service_w5q6pcs', 'template_33672ca', form.current, 'lZ6yuyMdIphWYyCqE')
         .then(
@@ -97,7 +185,7 @@ export const Header = ({ header, headContent }) => {
           },
           body: JSON.stringify({
             name: name,
-            phone: phone,
+            phone: `${selectedPrefix.value} ${phone}`,
             labels: sendLabes,
             utm_source: searchParams.get('utm_source')?.length ? searchParams.get('utm_source') : '',
             utm_medium: searchParams.get('utm_medium')?.length ? searchParams.get('utm_medium') : '',
@@ -109,12 +197,6 @@ export const Header = ({ header, headContent }) => {
       );
       const data = await rawResponse.json();
       console.log(data);
-    }
-    if (phone.length === 0) {
-      setPhoneError(true);
-    }
-    if (name.length === 0) {
-      setNameError(true);
     }
   };
 
@@ -193,22 +275,40 @@ export const Header = ({ header, headContent }) => {
               <div className={style.form__content}>
                 <input
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => {
+                    setName(e.target.value)
+                    setNameError(false)
+                  }}
                   type="name"
                   placeholder={headContent?.contact_us?.placeholder_1}
                   name="name"
                   className={nameError ? style.input__error : ''}
                 />
+                <Select
+                  className={style.form__select}
+                  options={countryPrefixes}
+                  placeholder="+44"
+                  styles={colourStyles}
+                  defaultValue={selectedPrefix.value}
+                  onChange={handlePrefixSelect}
+                  formatOptionLabel={formatOptionLabel}
+                />
                 <InputMask
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={(e) => {
+                    setPhone(e.target.value)
+                    setPhoneError(false)
+                  }}
                   type="tel"
                   placeholder={headContent?.contact_us?.placeholder_2}
                   name="phone"
-                  mask="+49 9999 999999"
-                  className={phoneError ? style.input__error : ''}
+                  mask={maskNumber}
+                  className={cx(phoneError ? style.input__error : '', style.form__phoneInput)}
                 />
                 <Button className={style.form__button}>{headContent?.contact_us?.button}</Button>
+                {(phoneError || nameError) && (
+                  <p className={style.form__errorMessage}>{`Please enter a valid ${phoneError ? 'phone number' : 'name'}`}</p>
+                )}
               </div>
             </form>
           </div>

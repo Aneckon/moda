@@ -375,6 +375,27 @@
     }
   }
 
+  &__errorMessage {
+    color: red !important;
+    font-size: 10px !important;
+    font-weight: 400 !important;
+    text-transform: none !important;
+    position: absolute;
+    bottom: -10px;
+    left: 30px;
+  }
+
+  &__phoneInput {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-left: transparent !important;
+
+    @media (max-width: 768px) {
+      padding-left: 5px !important;
+      padding-right: 5px !important;
+    }
+  }
+
   &__content {
     width: 100%;
     display: flex;
@@ -413,9 +434,6 @@
 
     @media (max-width: 768px) {
       font-size: 12px;
-    }
-
-    @media (max-width: 678px) {
       padding: 10px 16px;
     }
 
