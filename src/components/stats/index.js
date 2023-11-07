@@ -9,7 +9,7 @@ export const Stats = ({ counters }) => {
       <div className="container">
         <div className={style.stats__content}>
           {counters.map(counter => (
-            <div className={style.stats__item}>
+            <div key={counter?.id} className={style.stats__item}>
               <CountUp className={style.number} end={parseInt(counter?.number)} />
               <p className={style.name}>{counter?.title}</p>
             </div>

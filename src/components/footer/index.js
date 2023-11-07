@@ -25,7 +25,7 @@ export const Footer = ({ footer }) => {
           <div className={style.footer__left}>
             <div className={style.footer__social}>
               {footer?.socials.map(social => (
-              <Link target='_blank' href={social?.link}>
+              <Link key={social?.id} target='_blank' href={social?.link}>
                 <img src={`${host}${social?.icon?.data?.attributes?.url}`} alt={social?.icon?.data?.attributes?.alternativeText}  />
               </Link>
               ))}

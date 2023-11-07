@@ -264,7 +264,7 @@ export const Header = ({ header, headContent }) => {
             </div>
             <div className={style.style}>
               {headContent?.description_images.map(item => (
-                <div className={style.style__item}>
+                <div key={item?.id} className={style.style__item}>
                   <img src={`${host}${item?.icon?.data?.attributes?.url}`} alt={item?.icon?.data?.attributes?.alternativeText} />
                   <p>{item?.title}</p>
                 </div>

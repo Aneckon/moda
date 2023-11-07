@@ -47,7 +47,7 @@ export const Contact = ({ title, photo_1, photo_2, video_1, video_2, follow_us, 
           <div className={style.followUs}>
             <p>{follow_us.title}</p>
             {follow_us?.socials.map(social => (
-              <Link target='_blank' href={social?.link}>
+              <Link key={social?.id} target='_blank' href={social?.link}>
                 <img src={`${host}${social?.icon?.data?.attributes?.url}`} alt={social?.icon?.data?.attributes?.alternativeText} />
               </Link>
             ))}

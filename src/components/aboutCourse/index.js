@@ -16,7 +16,7 @@ export const AboutCourse = ({ title, description, list_title, list }) => {
             <div className={style.benefits__title}>{list_title}</div>
             <div className={style.benefits__list}>
               {list.map(item => (
-                <p>{item?.title}</p>
+                <p key={item?.id}>{item?.title}</p>
               ))}
             </div>
           </div>
